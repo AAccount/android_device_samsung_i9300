@@ -35,6 +35,17 @@ on post-fs-data
 
 on boot
 
+# Workaround for broken incall audio
+service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
+    class late_start
+    user root
+    group audio
+    oneshot
+
+#touch keys
+	write /sys/class/sec/sec_touchkey/touch_led_handling 1
+	write /sys/class/sec/sec_touchkey/touch_led_on_screen_touch 0
+
 # cbd
 service cpboot-daemon /sbin/cbd -d
     class main
