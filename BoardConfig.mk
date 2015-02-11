@@ -41,5 +41,7 @@ TARGET_OTA_ASSERT_DEVICE := m0,i9300,GT-I9300
 # own headers
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/i9300/include
 
+DEVICE_RESOLUTION := 720x1280
+
 # inherit from the proprietary version
 -include vendor/samsung/i9300/BoardConfigVendor.mk
