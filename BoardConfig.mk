@@ -19,6 +19,8 @@
 
 -include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
+WITH_DEXPREOPT := true
+
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6262
