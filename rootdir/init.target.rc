@@ -34,9 +34,29 @@ on post-fs-data
     restorecon /efs/wifi/.mac.info
 
 on boot
-#touch keys
+# touch keys
 	write /sys/class/sec/sec_touchkey/touch_led_handling 1
 	write /sys/class/sec/sec_touchkey/touch_led_on_screen_touch 0
+
+# write a default max/min frequency
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 200000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1600000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 200000
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1600000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 200000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1600000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 200000
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq 1600000
+
+# make undervolting table omni gears mod-able
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/UV_mV_table
+    chown system system /sys/devices/system/cpu/cpu2/cpufreq/UV_mV_table
+    chown system system /sys/devices/system/cpu/cpu3/cpufreq/UV_mV_table
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/UV_mV_table
+    chmod 0664 /sys/devices/system/cpu/cpu2/cpufreq/UV_mV_table
+    chmod 0664 /sys/devices/system/cpu/cpu3/cpufreq/UV_mV_table
 
 # Workaround for broken incall audio
 service bootsnd /system/bin/tinyplay /system/etc/sound/silence.wav -D 0 -d 0 -p 880
